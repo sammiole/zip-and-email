@@ -1,22 +1,23 @@
 #!/usr/bin/env bash
 
-# assigning variables, replace with your own
-now=$(date+%m_%d_%Y)
-directory=/path_to_directory_containing_files_to_zip/
-zip_file_name=filename_$now
-recipient=recipient@example.com
-email_body=body_of_your_email.txt
-email_subject='subject line'
+# directory containing files to zip
+cd /path_to_directory_containing_files_to_zip/
 
-# navigate to directory containing files to zip
-cd $directory
+# the current date
+now=$(date +%m_%d_%Y)
 
 # finds the files modified in the last 24 hours (-mtime -1) 
 # for modification time in minutes use -mmin -120 for 120 minutes etc. 
 # creates a .zip of the files in /tmp folder 
 # appends the current time ($now) to the file name
-find . -mtime -1 | xargs zip /tmp/$zip_file_name
+find . -mtime -1 | xargs zip /tmp/filename_$now
 
-# using mutt to send zip attachment
+# using mutt to send tgz attachment
 # fields: subject line, attachment file, recipient email, email text body
-mutt -s $email_subject -a /tmp/$zip_file_name.zip -- $recipient < $email_body
+# *********************************
+# -s "subject line"
+# -a /tmp/your_attachment_$now.zip
+# recipient@example.com 
+# < /tmp/body_of_your_email.txt
+# *********************************
+mutt -s 'subject line' -a /tmp/filename_$now.zip -- recipient@email.com < body_of_your_email.txt
