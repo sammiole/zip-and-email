@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/bash
 
 # directory containing files to zip
 cd /path_to_directory_containing_files_to_zip/
@@ -12,7 +12,7 @@ now=$(date +%m_%d_%Y)
 # appends the current time ($now) to the file name
 find . -mtime -1 | xargs zip /tmp/filename_$now
 
-# using mutt to send tgz attachment
+# using mutt to send zip attachment
 # fields: subject line, attachment file, recipient email, email text body
 # *********************************
 # -s "subject line"
