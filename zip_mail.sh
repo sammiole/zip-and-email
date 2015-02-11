@@ -27,7 +27,7 @@ if ["$(ls $dir)"]; then
 	# recipient@example.com
 	# < /tmp/body_of_your_email.txt 
 	# *********************************
-	mutt -s 'AFA Backup' -a /tmp/filename_$now.zip -- $email < /dev/null
+	mutt -s 'subject line' -a /tmp/filename_$now.zip -- $email < /dev/null
 	
 else
 	# if directory is empty, return "[directory] is empty"
